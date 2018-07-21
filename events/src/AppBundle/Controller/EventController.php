@@ -32,11 +32,11 @@ class EventController extends Controller
 
     public function listAction(){
 
-        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAll();
+        $event = $this->getDoctrine()->getRepository('AppBundle:Event')->findAll();
 
         // replace this example code with whatever you need
 
-        return $this->render('event/index.html.twig', array('events'=>$events));
+        return $this->render('event/index.html.twig', array('event'=>$event));
 
     }
 
@@ -82,17 +82,17 @@ class EventController extends Controller
 
             $now = new\DateTime('now');
 
-            $event->setName($event_name);
+            $event->setEventName($event_name);
 
-            $event->setCategory($event_img);
+            $event->setEventImg($event_img);
 
-            $event->setDescription($event_desc);
+            $event->setEventDesc($event_desc);
 
-            $event->setPriority($event_type);
+            $event->setEventType($event_type);
 
-            $event->setDueDate($event_date);
+            $event->setEventDate($event_date);
 
-            $event->setCreateDate($now);
+            // $event->setCreateDate($now);
 
             $em = $this->getDoctrine()->getManager();
 
@@ -127,17 +127,17 @@ class EventController extends Controller
     
     $now = new\DateTime('now');
     
-                $event->setName($event->getName());
+                $event->setEventName($event->getEventName());
     
-                $event->setCategory($event->getCategory());
+                $event->setEventImg($event->getEventImg());
     
-                $event->setDescription($event->getDescription());
+                $event->setEventDesc($event->getEventDesc());
     
-                $event->setPriority($event->getPriority());
+                $event->setEventType($event->getEventType());
     
-                $event->setDueDate($event->getDueDate());
+                $event->setEventDate($event->getEventDate());
     
-                $event->setCreateDate($now);
+                // $event->setCreateDate($now);
     
             $form = $this->createFormBuilder($event)->add('event_name', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
     
@@ -175,17 +175,17 @@ class EventController extends Controller
     
                 $event = $em->getRepository('AppBundle:Event')->find($id);
     
-                $event->setName($event_name);
+                $event->setEventName($event_name);
     
-                $event->setCategory($event_img);
+                $event->setEventImg($event_img);
     
-                $event->setDescription($event_desc);
+                $event->setEventDesc($event_desc);
     
-                $event->setPriority($event_type);
+                $event->setEventType($event_type);
     
-                $event->setDueDate($event_date);
+                $event->setEventDate($event_date);
     
-                $event->setCreateDate($now);
+                // $event->setCreateDate($now);
     
              
     

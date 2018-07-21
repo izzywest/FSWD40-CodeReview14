@@ -4,21 +4,21 @@
 
 <hr>
 
-<h2 class="page-header">{{event.event_name}}</h2>
+<h2 class="page-header">{{event.eventName}}</h2>
 
 <ul class="list-group">
 
-    <li class="list-group-item">Category: {{event.event_img}}</li>
+    <li class="list-group-item">Image: {{event.eventimg}}</li>
 
-    <li class="list-group-item">Priority: {{event.event_type}}</li>
+    <li class="list-group-item">Type: {{event.eventType}}</li>
 
-    <li class="list-group-item">Due: <strong> {{event.event_date|date('F j, Y, g:i a')}} </strong> </li>
+    <li class="list-group-item">Date: <strong> {{event.eventDate|date('F j, Y, g:i a')}} </strong> </li>
 
 </ul>
 
 <p>
 
-    {{event.event_desc}}
+    {{event.eventDesc}}
 
 </p>
 
