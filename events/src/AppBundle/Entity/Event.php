@@ -36,13 +36,6 @@ class Event
     private $eventDate;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="event_time", type="time")
-     */
-    private $eventTime;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="event_desc", type="string", length=255)

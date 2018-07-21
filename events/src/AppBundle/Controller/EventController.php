@@ -50,49 +50,99 @@ class EventController extends Controller
 
         $event = new Event;
 
-        $form = $this->createFormBuilder($event)->add('event_name', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
+        $form = $this->createFormBuilder($event)
+        
+            ->add('event_name', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
 
-        ->add('event_img', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
+            ->add('event_capacity', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
 
-        ->add('event_desc', TextareaType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
+            ->add('event_mail', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
 
-        ->add('event_type', ChoiceType::class, array('choices'=>array('Low'=>'Low', 'Normal'=>'Normal', 'High'=>'High'),'attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+            ->add('event_phone', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
 
-    ->add('event_date', DateTimeType::class, array('attr' => array('style'=>'margin-bottom:15px')))
+            ->add('event_url', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
 
-    ->add('save', SubmitType::class, array('label'=> 'Create Event', 'attr' => array('class'=> 'btn-primary', 'style'=>'margin-bottom:15px')))
+            ->add('event_street', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
 
-        ->getForm();
+            ->add('event_streetN', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
+            
+            ->add('event_zip', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
 
-        $form->handleRequest($request);
+            ->add('event_city', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
 
-        if($form->isSubmitted() && $form->isValid()){
+            ->add('event_img', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
 
-            //fetching data
+            ->add('event_desc', TextareaType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
 
-            $event_name = $form['event_name']->getData();
+            ->add('event_type', ChoiceType::class, array('choices'=>array('Music'=>'Music', 'Sport'=>'Sport', 'Movie'=>'Movie', 'Theater'=>'Theater', 'Art'=>'Art', 'Other'=>'Other'),'attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
 
-            $event_img = $form['event_img']->getData();
+            ->add('event_date', DateTimeType::class, array('attr' => array('style'=>'margin-bottom:15px')))
 
-            $event_desc = $form['event_desc']->getData();
+            ->add('save', SubmitType::class, array('label'=> 'Create Event', 'attr' => array('class'=> 'btn-primary', 'style'=>'margin-bottom:15px')))
 
-            $event_type = $form['event_type']->getData();
+                ->getForm();
 
-            $event_date = $form['event_date']->getData();
+                $form->handleRequest($request);
 
-            $now = new\DateTime('now');
+                if($form->isSubmitted() && $form->isValid()){
 
-            $event->setEventName($event_name);
+                //fetching data
 
-            $event->setEventImg($event_img);
+                $event_name = $form['event_name']->getData();
 
-            $event->setEventDesc($event_desc);
+                $event_capacity = $form['event_capacity']->getData();
 
-            $event->setEventType($event_type);
+                $event_mail = $form['event_mail']->getData();
+                
+                $event_phone = $form['event_phone']->getData();
 
-            $event->setEventDate($event_date);
+                $event_url = $form['event_url']->getData();
 
-            // $event->setCreateDate($now);
+                $event_street = $form['event_street']->getData();
+
+                $event_streetN = $form['event_streetN']->getData();
+
+                $event_zip = $form['event_zip']->getData();
+
+                $event_city = $form['event_city']->getData();
+
+                $event_img = $form['event_img']->getData();
+
+                $event_desc = $form['event_desc']->getData();
+
+                $event_type = $form['event_type']->getData();
+
+                $event_date = $form['event_date']->getData();
+
+                // $now = new\DateTime('now');
+
+                $event->setEventName($event_name);
+
+                $event->setEventCapacity($event_capacity);
+
+                $event->setEventMail($event_mail);
+
+                $event->setEventPhone($event_phone);
+
+                $event->setEventUrl($event_url);
+
+                $event->setEventStreet($event_street);
+
+                $event->setEventStreetN($event_streetN);
+
+                $event->setEventZip($event_zip);
+
+                $event->setEventCity($event_city);
+
+                $event->setEventImg($event_img);
+
+                $event->setEventDesc($event_desc);
+
+                $event->setEventType($event_type);
+
+                $event->setEventDate($event_date);
+
+                // $event->setCreateDate($now);
 
             $em = $this->getDoctrine()->getManager();
 
@@ -125,10 +175,26 @@ class EventController extends Controller
 
         $event = $this->getDoctrine()->getRepository('AppBundle:Event')->find($id);
     
-    $now = new\DateTime('now');
+    // $now = new\DateTime('now');
     
                 $event->setEventName($event->getEventName());
     
+                $event->setEventCapacity($event->getEventCapacity());
+
+                $event->setEventMail($event->getEventMail());
+
+                $event->setEventPhone($event->getEventPhone());
+
+                $event->setEventUrl($event->getEventUrl());
+
+                $event->setEventStreet($event->getEventStreet());
+
+                $event->setEventStreetN($event->getEventStreetN());
+
+                $event->setEventZip($event->getEventZip());
+
+                $event->setEventCity($event->getEventCity());
+
                 $event->setEventImg($event->getEventImg());
     
                 $event->setEventDesc($event->getEventDesc());
@@ -139,17 +205,34 @@ class EventController extends Controller
     
                 // $event->setCreateDate($now);
     
-            $form = $this->createFormBuilder($event)->add('event_name', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
-    
+            $form = $this->createFormBuilder($event)
+            ->add('event_name', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+
+            ->add('event_capacity', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+
+            ->add('event_mail', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+            
+            ->add('event_phone', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+
+            ->add('event_url', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+
+            ->add('event_street', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+
+            ->add('event_streetN', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+
+            ->add('event_zip', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+
+            ->add('event_city', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+                
             ->add('event_img', TextType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-bottom:15px')))
     
             ->add('event_desc', TextareaType::class, array('attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
     
-            ->add('event_type', ChoiceType::class, array('choices'=>array('Low'=>'Low', 'Normal'=>'Normal', 'High'=>'High'),'attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
+            ->add('event_type', ChoiceType::class, array('choices'=>array('Music'=>'Music', 'Sport'=>'Sport', 'Movie'=>'Movie', 'Theater'=>'Theater'),'attr' => array('class'=> 'form-control', 'style'=>'margin-botton:15px')))
     
-        ->add('event_date', DateTimeType::class, array('attr' => array('style'=>'margin-bottom:15px')))
+            ->add('event_date', DateTimeType::class, array('attr' => array('style'=>'margin-bottom:15px')))
     
-        ->add('save', SubmitType::class, array('label'=> 'Update Event', 'attr' => array('class'=> 'btn-primary', 'style'=>'margin-botton:15px')))
+            ->add('save', SubmitType::class, array('label'=> 'Update Event', 'attr' => array('class'=> 'btn-primary', 'style'=>'margin-botton:15px')))
     
             ->getForm();
     
@@ -161,6 +244,22 @@ class EventController extends Controller
     
                 $event_name = $form['event_name']->getData();
     
+                $event_capacity = $form['event_capacity']->getData();
+
+                $event_mail = $form['event_mail']->getData();
+                
+                $event_phone = $form['event_phone']->getData();
+
+                $event_url = $form['event_url']->getData();
+
+                $event_street = $form['event_street']->getData();
+
+                $event_streetN = $form['event_streetN']->getData();
+
+                $event_zip = $form['event_zip']->getData();
+
+                $event_city = $form['event_city']->getData();
+
                 $event_img = $form['event_img']->getData();
     
                 $event_desc = $form['event_desc']->getData();
@@ -169,7 +268,7 @@ class EventController extends Controller
     
                 $event_date = $form['event_date']->getData();
     
-                $now = new\DateTime('now');
+                // $now = new\DateTime('now');
     
                 $em = $this->getDoctrine()->getManager();
     
@@ -177,6 +276,22 @@ class EventController extends Controller
     
                 $event->setEventName($event_name);
     
+                $event ->setEventCapacity($event_capacity);
+                
+                $event ->setEventMail($event_mail);
+
+                $event ->setEventPhone($event_phone);
+
+                $event ->setEventUrl($event_url);
+                
+                $event->setEventStreet($event_street);
+
+                $event->setEventStreetN($event_streetN);
+
+                $event->setEventZip($event_zip);
+
+                $event->setEventCity($event_city);
+
                 $event->setEventImg($event_img);
     
                 $event->setEventDesc($event_desc);

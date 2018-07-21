@@ -1,25 +1,36 @@
 {% extends 'base.html.twig' %} {% block body %}
 
 <a class="btn btn-default" href="/">Back to Events</a>
-
+<a href="/event/edit/{{event.id}}" class="btn btn-default">Edit</a>
+<a href="/event/delete/{{event.id}}" class="btn btn-danger">Delete</a>
 <hr>
 
 <h2 class="page-header">{{event.eventName}}</h2>
 
 <ul class="list-group">
 
-    <li class="list-group-item">Image: {{event.eventImg}}</li>
+    <img class="list-group-item" src="{{event.eventImg}}" alt="event img" style="width: 30%;">
 
-    <li class="list-group-item">Type: {{event.eventType}}</li>
+    <li class="list-group-item"><u>Type:</u><br> {{event.eventType}}</li>
 
-    <li class="list-group-item">Date: <strong> {{event.eventDate|date('F j, Y, g:i a')}} </strong> </li>
+    <li class="list-group-item"><u>Date:</u><br> {{event.eventDate|date('F j, Y, g:i a')}} </li>
+
+    <li class="list-group-item"><u>Capacity:</u><br> {{event.eventCapacity}}</li>
+
+    <li class="list-group-item"><u>Contact:</u> <br> Mail:
+        <a href="mailto:{{event.eventMail}}">{{event.eventMail}}</a> <br> Phone: <a href="tel:+{{event.eventPhone}}">{{event.eventPhone}}</a> </li>
+
+    <li class="list-group-item"><u>Address:</u><br> {{event.eventStreet}} {{event.eventStreetN}}, <br> {{event.eventZip}} {{event.eventCity}}</li>
+
+    <li class="list-group-item"><u>Link:</u><br> <a target="_blank" href="http://{{event.eventUrl}}">{{event.eventUrl}}</a> </li>
 
 </ul>
 
-<p>
-
-    {{event.eventDesc}}
-
-</p>
+<div class="container" style="margin-bottom: 50px;">
+    <h4>Description: </h4>
+    <p>
+        {{event.eventDesc}}
+    </p>
+</div>
 
 {% endblock %}
